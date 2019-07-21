@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Boardie app error</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+</head>
+<style type="text/css" media="screen">
+    body {
+        margin: 25px;
+        background-color: rgb(220,220,220);
+        font-family: Calibri, sans-serif;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 35px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    p {
+        font-size: 25px;
+        font-weight: normal;
+        margin-top: 5px;
+    }
+</style>
+<body>
+<div class="cover">
+    <h1>Houston, we have a problem...</h1>
+    <h1 th:text="${'Code ' + status + ' - ' + error}">Status</h1>
+    <p th:text=${message}>Response message</p>
+</div>
+</body>
+</html>
