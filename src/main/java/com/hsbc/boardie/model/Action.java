@@ -18,4 +18,9 @@ public class Action {
         return content;
     }
 
+    @Override
+    public String toString(){
+        return login + " -> " + content;
+    }
+
 }

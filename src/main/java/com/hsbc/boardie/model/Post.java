@@ -40,4 +40,10 @@ public class Post implements Comparable<Post> {
     public int compareTo(Post post) {
         return this.getMessage().getTimestamp().compareTo(post.getMessage().getTimestamp());
     }
+
+    @Override
+    public String toString(){
+        return "ID: " + id + " " + user + " -> " + message;
+    }
+
 }

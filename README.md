@@ -123,7 +123,7 @@ GET /rest/timeline/Johny
 
 **GET /rest/post/{id}**
 
-User has the possibility to see the messages of all users he follow  
+User has the possibility to see the chosen message by ID 
 
 **Request**
 ```

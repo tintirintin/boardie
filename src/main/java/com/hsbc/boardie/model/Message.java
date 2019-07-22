@@ -27,4 +27,9 @@ public class Message {
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
+
+    @Override
+    public String toString(){
+        return message + " @" + timestamp;
+    }
 }
