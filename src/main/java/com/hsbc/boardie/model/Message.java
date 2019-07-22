@@ -7,9 +7,13 @@ public class Message {
     private String message;
     private Date timestamp;
 
-    public Message(String message, Date timestamp) {
+    public Message(String message) {
         this.message = message;
-        this.timestamp = timestamp;
+        this.timestamp = getCurrentSystemDate();
+    }
+
+    private Date getCurrentSystemDate(){
+        return new Date(System.currentTimeMillis());
     }
 
     public String getMessage() {

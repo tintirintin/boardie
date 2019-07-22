@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "e681a39c-834d-4810-b929-f69ed0b6f833",
+		"name": "boardie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/rest/wall",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/rest/wall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"Johny\",\n\t\"content\": \"Siemanko\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"David\",\n\t\"content\": \"Elo elo 3 2 0\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"Catherine\",\n\t\"content\": \"Co tam chłopaki?\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"Johny\",\n\t\"content\": \"Nuda...\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 5",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"Johny\",\n\t\"content\": \"Nic się nie dzieje :)\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 6",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"David\",\n\t\"content\": \"Chyba u Ciebie!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 7",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"Catherine\",\n\t\"content\": \"<3\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/message 8",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"Admin\",\n\t\"content\": \"Łamiąca wiadomość: https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/wall",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/rest/wall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/userwall/David",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/rest/userwall/David",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"userwall",
+						"David"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/follow",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"David\",\n\t\"content\": \"Johny\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/follow",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"follow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/timeline/David",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/rest/timeline/David",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"timeline",
+						"David"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/rest/post/5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/post/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"post",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

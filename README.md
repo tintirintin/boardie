@@ -1,11 +1,21 @@
 # Boardie 0.9 - simple networking app
 
-This is a demo of REST API project of the code challenge trial for HSBC recruitment process, 
+This is a demo of networking app project with REST API, the code challenge trial for HSBC recruitment process, 
 brought to you by Miroslaw Sniezek :muscle:
+
+To build the app, git clone the repo and execute:
+```
+mvnw clean install
+```
+
+and then run the jar file:
+```
+java -jar target/boardie-0.9.jar
+```
 
 A format of accepting GET/POST requests is JSON, so you can use e.g. 
 Postman (https://www.getpostman.com/)
-or CURL (https://curl.haxx.se/download.html) to test the app.
+or CURL (https://curl.haxx.se/download.html) to test the app. The Postman colletion is included in the project for your convenience: `src/main/resources/boardie.postman_collection.json`. You can just import it to the program and send some requests.
 
 The application has few functions, all of them are described below. Happy using!
 

@@ -17,10 +17,11 @@ public class LoggingAspect {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Around("execution(public * com.hsbc.boardie..*(..))")
-    public void logAround(ProceedingJoinPoint pjp) throws Throwable {
-        LOGGER.info("************** BEFORE: " + pjp.toString() + " ***Args: " + Arrays.deepToString(pjp.getArgs()));
-        pjp.proceed();
-        LOGGER.info("************** AFTER " + pjp.toString());
+    public Object logAround(ProceedingJoinPoint pjp) throws Throwable {
+        LOGGER.info("************** ENTER: " + pjp.toString() + " ***Args: " + Arrays.deepToString(pjp.getArgs()));
+        Object ret = pjp.proceed();
+        LOGGER.info("************** EXIT " + pjp.toString());
+        return ret;
     }
 
     @AfterThrowing(pointcut = "execution(* com.hsbc.boardie..*(..))", throwing = "ex")

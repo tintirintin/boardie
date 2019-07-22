@@ -1,4 +1,4 @@
-package com.hsbc.boardie.service;
+package com.hsbc.boardie.services;
 
 import com.hsbc.boardie.exceptions.*;
 import com.hsbc.boardie.model.Action;
@@ -27,10 +27,6 @@ public class BoardieService {
             }
         }
         return null;
-    }
-
-    private Date getCurrentSystemDate(){
-        return new Date(System.currentTimeMillis());
     }
 
     public Collection<Post> getWall(){
@@ -78,7 +74,8 @@ public class BoardieService {
             throw new WrongMessageException();
         }
 
-        Message message = new Message(action.getContent(), getCurrentSystemDate());
+        // make login a-z 0-9 and underscore
+        Message message = new Message(action.getContent());
         User user = getUser(action.getLogin());
         if (user == null){
             user = new User(action.getLogin());
