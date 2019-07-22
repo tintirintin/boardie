@@ -1,9 +1,6 @@
 package com.hsbc.boardie.service;
 
-import com.hsbc.boardie.exceptions.BadFollowException;
-import com.hsbc.boardie.exceptions.BadLoginException;
-import com.hsbc.boardie.exceptions.UserNotFoundException;
-import com.hsbc.boardie.exceptions.WrongMessageException;
+import com.hsbc.boardie.exceptions.*;
 import com.hsbc.boardie.model.Action;
 import com.hsbc.boardie.model.Message;
 import com.hsbc.boardie.model.Post;
@@ -11,14 +8,19 @@ import com.hsbc.boardie.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Service
 public class BoardieService {
 
     private static Deque<Post> board = new ArrayDeque<>();
+    private AtomicLong postId = new AtomicLong();
 
     private User getUser(String login){
+        if (login.isEmpty()){
+            throw new BadLoginException();
+        }
         for (Post post : board){
             if (post.getUser().getLogin().equals(login)){
                 return post.getUser();
@@ -31,14 +33,19 @@ public class BoardieService {
         return new Date(System.currentTimeMillis());
     }
 
-    public Collection<Post> getCurrentWall(){
+    public Collection<Post> getWall(){
         return board;
     }
 
-    public Collection<Post> getTimeline(String login){
-        if (login.isEmpty()){
-            throw new BadLoginException();
+    public Collection<Post> getUserWall(String login){
+        User user = getUser(login);
+        if (user == null) {
+            throw new UserNotFoundException();
         }
+        return board.stream().filter(post -> post.getUser().getLogin().equals(login)).collect(Collectors.toList());
+    }
+
+    public Collection<Post> getTimeline(String login){
         User user = getUser(login);
         if (user == null) {
             throw new UserNotFoundException();
@@ -50,6 +57,14 @@ public class BoardieService {
             followingPosts.addAll(board.stream().filter(post -> post.getUser().getLogin().equals(follow)).collect(Collectors.toList()));
         }
         return followingPosts;
+    }
+
+    public Post getPostByID(long id){
+        Post found = board.stream().filter(post -> post.getId() == id).findAny().orElse(null);
+        if (found == null) {
+            throw new MessageNotFoundException();
+        }
+        return found;
     }
 
     public synchronized Post createMessage(Action action){
@@ -68,12 +83,12 @@ public class BoardieService {
         if (user == null){
             user = new User(action.getLogin());
         }
-        Post post = new Post(user, message);
+        Post post = new Post(postId.incrementAndGet(), user, message);
         board.addFirst(post);
         return post;
     }
 
-    public synchronized Action followUser(Action action){
+    public synchronized User followUser(Action action){
         if (action.getLogin().isEmpty() || action.getContent().isEmpty()) {
             throw new BadLoginException();
         }
@@ -90,6 +105,6 @@ public class BoardieService {
 
         user.addToFollowing(follow.getLogin());
 
-        return action;
+        return user;
     }
 }
