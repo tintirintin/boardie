@@ -26,6 +26,9 @@ public class LoggingAspect {
 
     @AfterThrowing(pointcut = "execution(* com.hsbc.boardie..*(..))", throwing = "ex")
     public void logError(Exception ex) {
-        ex.printStackTrace();
+        LOGGER.error(ex.toString());
+        for (StackTraceElement s : ex.getStackTrace()){
+            LOGGER.error(s.toString());
+        }
     }
 }

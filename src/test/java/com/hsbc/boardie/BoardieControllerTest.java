@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -24,6 +25,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.hasValue;
 import static org.hamcrest.Matchers.is;
@@ -40,13 +42,21 @@ public class BoardieControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private BoardieController controller;
+
     @MockBean
     private BoardieService service;
 
     private String failed = "Assertion failed!";
 
     @Test
-    public void checkEmptyWall() throws Exception {
+    public void contextLoads() {
+        assertThat(controller).isNotNull();
+    }
+
+    @Test
+    public void testEmptyWall() throws Exception {
 
         when(service.getWall()).thenReturn(new ArrayDeque<>());
 
@@ -58,7 +68,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkWallWithPosts() throws Exception {
+    public void testWallWithPosts() throws Exception {
 
         AtomicLong al = new AtomicLong();
         Deque<Post> board = new ArrayDeque<>();
@@ -82,7 +92,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkUserWall() throws Exception {
+    public void testUserWall() throws Exception {
 
         Deque<Post> board = new ArrayDeque<>();
         board.addFirst(new Post(1, new User("Kenny"), new Message("###@$#$@#@@!@!")));
@@ -100,7 +110,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkUserWallNoUser() throws Exception {
+    public void testUserWallNoUser() throws Exception {
 
         Deque<Post> board = new ArrayDeque<>();
         board.addFirst(new Post(1, new User("Kenny"), new Message("###@$#$@#@@!@!")));
@@ -117,7 +127,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkEmptyTimeline() throws Exception {
+    public void testEmptyTimeline() throws Exception {
 
         when(service.getTimeline("Kyle")).thenReturn(new ArrayDeque<>());
 
@@ -130,7 +140,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkTimelineWithPosts() throws Exception {
+    public void testTimelineWithPosts() throws Exception {
 
         AtomicLong al = new AtomicLong();
         Deque<Post> board = new ArrayDeque<>();
@@ -151,7 +161,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkTimelineNoUser() throws Exception {
+    public void testTimelineNoUser() throws Exception {
 
         Deque<Post> board = new ArrayDeque<>();
         board.addFirst(new Post(1, new User("Kenny"), new Message("###@$#$@#@@!@!")));
@@ -168,7 +178,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkPostById() throws Exception {
+    public void testPostById() throws Exception {
 
         long id = 5;
         Post post = new Post(id, new User("Cartman"), new Message("But mooooooom!"));
@@ -184,7 +194,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkPostByIdNotFound() throws Exception {
+    public void testPostByIdNotFound() throws Exception {
 
         when(service.getPostByID(6)).thenThrow(new MessageNotFoundException());
 
@@ -198,7 +208,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkCreateMessage() throws Exception {
+    public void testCreateMessage() throws Exception {
 
         long id = 5;
         Post post = new Post(id, new User("Stan"), new Message("That's impossible!"));
@@ -215,7 +225,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkCreateEmptyOrTooLongMessage() throws Exception {
+    public void testCreateEmptyOrTooLongMessage() throws Exception {
 
         when(service.createMessage(any(Action.class))).thenThrow(new WrongMessageException());
 
@@ -231,7 +241,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkCreateMessageWithEmptyLogin() throws Exception {
+    public void testCreateMessageWithBadLogin() throws Exception {
 
         when(service.createMessage(any(Action.class))).thenThrow(new BadLoginException());
 
@@ -241,13 +251,13 @@ public class BoardieControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON))
                         .andExpect(status().isBadRequest()).andReturn().getResponse().getErrorMessage() + "";
 
-        Assert.isTrue(error.contains("Empty login name!"), failed);
+        Assert.isTrue(error.contains("Bad user name!"), failed);
 
         verify(service, times(1)).createMessage(any(Action.class));
     }
 
     @Test
-    public void checkFollowUser() throws Exception {
+    public void testFollowUser() throws Exception {
 
         User user = new User("Stan");
         user.addToFollowing("Cartman");
@@ -267,7 +277,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkFollowToSelf() throws Exception {
+    public void testFollowToSelf() throws Exception {
 
         when(service.followUser(any(Action.class))).thenThrow(new BadFollowException());
 
@@ -283,7 +293,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkFollowUserNoUser() throws Exception {
+    public void testFollowUserNoUser() throws Exception {
 
         when(service.followUser(any(Action.class))).thenThrow(new UserNotFoundException());
 
@@ -299,7 +309,7 @@ public class BoardieControllerTest {
     }
 
     @Test
-    public void checkFollowWithEmptyLogin() throws Exception {
+    public void testFollowWithBadLogin() throws Exception {
 
         when(service.followUser(any(Action.class))).thenThrow(new BadLoginException());
 
@@ -309,7 +319,7 @@ public class BoardieControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON))
                         .andExpect(status().isBadRequest()).andReturn().getResponse().getErrorMessage() + "";
 
-        Assert.isTrue(error.contains("Empty login name!"), failed);
+        Assert.isTrue(error.contains("Bad user name!"), failed);
 
         verify(service, times(1)).followUser(any(Action.class));
     }

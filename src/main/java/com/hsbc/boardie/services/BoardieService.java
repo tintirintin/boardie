@@ -9,16 +9,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
 public class BoardieService {
 
-    private static Deque<Post> board = new ArrayDeque<>();
+    private static final Pattern loginPattern = Pattern.compile("^[a-zA-Z0-9]*$");
+    private Deque<Post> board = new ArrayDeque<>();
     private AtomicLong postId = new AtomicLong();
 
     private User getUser(String login){
-        if (login.isEmpty()){
+        if (login.isEmpty() || !loginPattern.matcher(login).find()){
             throw new BadLoginException();
         }
         for (Post post : board){
@@ -66,7 +68,7 @@ public class BoardieService {
     public synchronized Post createMessage(Action action){
         int maxMessageLength = 140;
 
-        if (action.getLogin().isEmpty()) {
+        if (action.getLogin().isEmpty() || !loginPattern.matcher(action.getLogin()).find()) {
             throw new BadLoginException();
         }
 
@@ -74,7 +76,6 @@ public class BoardieService {
             throw new WrongMessageException();
         }
 
-        // make login a-z 0-9 and underscore
         Message message = new Message(action.getContent());
         User user = getUser(action.getLogin());
         if (user == null){
@@ -86,7 +87,9 @@ public class BoardieService {
     }
 
     public synchronized User followUser(Action action){
-        if (action.getLogin().isEmpty() || action.getContent().isEmpty()) {
+        if (action.getLogin().isEmpty() || action.getContent().isEmpty()
+        || !loginPattern.matcher(action.getLogin()).find()
+        || !loginPattern.matcher(action.getContent()).find()) {
             throw new BadLoginException();
         }
         if (action.getLogin().equals(action.getContent())){

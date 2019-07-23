@@ -15,9 +15,15 @@ java -jar target/boardie-0.9.jar
 
 A format of accepting GET/POST requests is JSON, so you can use e.g. 
 Postman (https://www.getpostman.com/)
-or CURL (https://curl.haxx.se/download.html) to test the app. The Postman colletion is included in the project for your convenience: `src/main/resources/boardie.postman_collection.json`. You can just import it to the program and send some requests.
+or CURL (https://curl.haxx.se/download.html) to test the app. The Postman colletion is included in the project 
+for your convenience: `src/main/resources/boardie.postman_collection.json`. 
+You can just import it to the program and send some requests from there.
 
-The application has few functions, all of them are described below. Happy using!
+Boardie application has few functions, all of them are described below. 
+
+**Important: Logins and followers will be accepted only in alphanumeric `("^[a-zA-Z0-9]*$")` format! This is in order to avoid empty login with spaces only**. 
+
+*Hope that bugs will not come out ;)*
 
 ### Create the message
 
