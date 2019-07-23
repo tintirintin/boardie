@@ -1,4 +1,4 @@
-# Boardie 0.9 - simple networking app
+# Boardie 1.0 - simple networking app
 
 This is a demo of networking app project with REST API, the code challenge trial for HSBC recruitment process, 
 brought to you by Miroslaw Sniezek :muscle:
