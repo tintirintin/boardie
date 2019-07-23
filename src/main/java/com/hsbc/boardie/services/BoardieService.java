@@ -54,6 +54,8 @@ public class BoardieService {
         for (String follow : following){
             followingPosts.addAll(board.stream().filter(post -> post.getUser().getLogin().equals(follow)).collect(Collectors.toList()));
         }
+        Collections.sort(followingPosts);
+        Collections.reverse(followingPosts);
         return followingPosts;
     }
 

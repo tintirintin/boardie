@@ -1,5 +1,7 @@
 package com.hsbc.boardie.model;
 
+import java.util.Objects;
+
 public class Post implements Comparable<Post> {
 
     private long id;
@@ -46,4 +48,16 @@ public class Post implements Comparable<Post> {
         return "ID: " + id + " " + user + " -> " + message;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return id == post.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, message);
+    }
 }
